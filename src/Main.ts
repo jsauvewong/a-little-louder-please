@@ -1,6 +1,6 @@
 import { sendSms } from "./sendSms"
 import { pickPhrase } from "./pickPhrase"
-import schedule from ('node-schedule')
+import schedule from "node-schedule"
 
 
 // const execute = () => {
@@ -12,7 +12,8 @@ import schedule from ('node-schedule')
 // console.log('started running')
 // const timeout = setTimeout(execute, 1000);
 
- 
-const j = schedule.scheduleJob('* * * * *', function(){
-  console.log('The answer to life, the universe, and everything!');
-});
+
+const j = schedule.scheduleJob("* * * * *", function () {
+  sendSms(pickPhrase())
+  console.log("done!")
+})

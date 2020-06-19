@@ -1,6 +1,7 @@
 const randomNumber = (max: number): number => {
     return Math.floor(Math.random() * max)
 }
+
 export const pickPhrase = (): string => {
     const phrasesArray = [
         'The difference between ordinary and extraordinary is that little extra. --Jimmy Johnson',
@@ -15,7 +16,7 @@ export const pickPhrase = (): string => {
         'Always remember you are braver than you believe, stronger than you seem, smarter than you think and twice as beautiful as you’ve ever imagined. --Dr. Seuss'
     ]
 
-    
+
 
 
     // generates a random number from phrasesArray
