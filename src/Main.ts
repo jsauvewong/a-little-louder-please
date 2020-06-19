@@ -1,6 +1,10 @@
 import { sendSms } from "./sendSms"
 import { pickPhrase } from "./pickPhrase"
 import schedule from "node-schedule"
+import { startServer } from "./express"
+
+// So the app can talk to Heroku on their own assigned port
+startServer()
 
 
 // const execute = () => {
@@ -13,7 +17,9 @@ import schedule from "node-schedule"
 // const timeout = setTimeout(execute, 1000);
 
 
-const j = schedule.scheduleJob("* * * * *", function () {
-  //sendSms(pickPhrase())
+
+const j = schedule.scheduleJob("0 9 * * *", function () {
+  sendSms(pickPhrase())
   console.log("done!")
 })
+
