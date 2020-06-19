@@ -14,6 +14,6 @@ import schedule from "node-schedule"
 
 
 const j = schedule.scheduleJob("* * * * *", function () {
-  sendSms(pickPhrase())
+  //sendSms(pickPhrase())
   console.log("done!")
 })
