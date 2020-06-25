@@ -1,8 +1,6 @@
 import twilio from 'twilio'
 
-
 export const sendSms = (message: string) => {
-
   const accountSid = 'AC9d091bee8a4298347936952b19e4e246'
   const authToken = 'd06db33a248dccdbac4f7debf043a4ea'
   const client = twilio(accountSid, authToken)
@@ -13,6 +11,5 @@ export const sendSms = (message: string) => {
     to: '+17788613154'
   })
 
-  messageInstancePromise.then(message => console.log(message.sid))
-
+  messageInstancePromise.then((message) => console.log(message.sid))
 }
