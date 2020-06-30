@@ -8,27 +8,25 @@
     <!--to center everything-->
     <div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div class="max-w-md w-full">
-        <div class="space-y-6">
-          <div>
-            <img src="Clear_your_mind_of_can_t_PNG.png" alt="clear your mind of cant" \ />
-          </div>
+        <div class="space-y-6"></div>
           <!--space-->
           <div>
             <!--bolded works 'sign up for your daily inspiration-->
             <!---->
+            <img class="mx-auto h-40.5 w-auto" src="Clear_your_mind_of_can_t_PNG.png" alt="clear your mind of cant" width='300'/>
             <h2 class="mt-6 text-center text-3xl leading-9 font-extrabold text-gray-900">
               Sign up for your daily inspiration!
             </h2>
             <!---->
             <!--words under Sign up for your daily inspiration-->
             <!---->
-            <p class="mt-2 text-center text-med leading-5 font-bold text-gray-600">
+            <p class="mx-auto text-center text-med leading-5 font-bold text-gray-600">
               You are
               <a
-                href="#"
+                href="https://www.reddit.com/r/AskReddit/comments/6ng6ho/what_is_the_most_wholesome_fact_you_know/"
                 class="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition ease-in-out duration-150"
               >
-                beautiful
+              awesome!
               </a>
             </p>
           </div>
@@ -36,19 +34,20 @@
           <div>
             <!--FORM -->
             <div class="content">
-              <form class="w-full max-w-lg">
+              <form class="w-full max-w-lg" action="/subscribed" method="POST">
                 <div class="flex flex-wrap -mx-3 mb-6">
                   <!--LEFT FILL IN BOX-->
                   <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                     <label
                       class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                      for="grid-first-name"
+                      for="name"
                     >
                       First Name
                     </label>
                     <input
                       class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                      id="grid-first-name"
+                      
+                      name="name"
                       type="text"
                       placeholder="Jane"
                     />
@@ -61,13 +60,13 @@
                   <div class="w-full md:w-1/2 px-3">
                     <label
                       class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                      for="grid-last-name"
+                      for="smsNumber"
                     >
                       Phone Number
                     </label>
                     <input
                       class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                      id="grid-last-name"
+                      name="smsNumber"
                       type="text"
                       placeholder="604-123-4567"
                     />
@@ -75,7 +74,9 @@
                   </div>
                 </div>
                 <!--revised button yay!-->
+                
                 <div class="mt-6">
+
                   <!--for the 'sign in' button, type='submit' will be important later-->
                   <button
                     type="submit"

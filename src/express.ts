@@ -2,6 +2,7 @@ import express from 'express'
 import { Subscriber } from './postgreSQL'
 import bodyParser from 'body-parser'
 import path from 'path'
+import { filterNumber } from './parseNumber'
 
 export const startServer = () => {
   const app = express()
@@ -14,10 +15,15 @@ export const startServer = () => {
   //   res.sendFile(path.join(__dirname + '/../public/test.html'))
   // })
   app.use('/', express.static(path.join(__dirname, '../public')))
+  app.get('/subscribed', function (req, res) {
+    res.sendFile(__dirname + '../public/subscribed')
+  })
 
-  app.post('/subscribers', jsonParser, async (req, res) => {
+  app.use(express.urlencoded({ extended: false }))
+
+  app.post('/subscriber', jsonParser, async (req, res) => {
     const { name, smsNumber } = req.body
-    const newSubscriber = await Subscriber.create({ name, smsNumber })
+    const newSubscriber = await Subscriber.create({ name, smsNumber: filterNumber(smsNumber) })
     res.json({
       id: newSubscriber.id,
       name: newSubscriber.name,
