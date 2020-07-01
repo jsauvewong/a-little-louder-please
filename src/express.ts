@@ -9,26 +9,23 @@ export const startServer = () => {
   const onDone = () => console.log(`Example app listening at http://localhost:${5000}`)
   const jsonParser = bodyParser.json()
 
-  app.get('/root', (req, res) => res.send('Hello World!'))
-  app.get('/js', (req, res) => res.send('Hello Patooter!'))
-  // app.get('/', function (req, res) {
-  //   res.sendFile(path.join(__dirname + '/../public/test.html'))
-  // })
   app.use('/', express.static(path.join(__dirname, '../public')))
-  app.get('/subscribed', function (req, res) {
-    res.sendFile(__dirname + '../public/subscribed')
-  })
 
   app.use(express.urlencoded({ extended: false }))
 
   app.post('/subscriber', jsonParser, async (req, res) => {
     const { name, smsNumber } = req.body
-    const newSubscriber = await Subscriber.create({ name, smsNumber: filterNumber(smsNumber) })
-    res.json({
-      id: newSubscriber.id,
-      name: newSubscriber.name,
-      smsNumber: newSubscriber.smsNumber
-    })
+    if (filterNumber(smsNumber) !== undefined) {
+      const project = await Subscriber.findOne({ where: { smsNumber: filterNumber(smsNumber) } })
+      if (project === null) {
+        const newSubscriber = await Subscriber.create({ name, smsNumber: filterNumber(smsNumber) })
+        res.redirect('/redirectsuccess.html')
+      } else {
+        res.redirect('/redirectsuccess.html')
+      }
+    } else {
+      res.redirect('/error404.html')
+    }
   })
 
   app.listen(process.env.PORT || 5000, onDone)

@@ -34,24 +34,6 @@ Subscriber.init(
   }
 )
 
-// export const Subscriber = sequelize.define("subscriber", {
-//   id: {
-//     type: DataTypes.UUID,
-//     defaultValue: DataTypes.UUIDV1,
-//     primaryKey: true,
-//     allowNull: false
-//   },
-//   name: {
-//     type: DataTypes.TEXT,
-//     allowNull: false
-//   },
-//   smsNumber: {
-//     type: DataTypes.STRING(16),
-//     allowNull: false,
-//     unique: true
-//   }
-// });
-
 export async function setUpDatabase() {
   try {
     await sequelize.authenticate()
