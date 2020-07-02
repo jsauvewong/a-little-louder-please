@@ -4,9 +4,9 @@ import bodyParser from 'body-parser'
 import path from 'path'
 import { filterNumber } from './parseNumber'
 
-export const startServer = () => {
+export const createApp = () => {
   const app = express()
-  const onDone = () => console.log(`Example app listening at http://localhost:${5000}`)
+
   const jsonParser = bodyParser.json()
 
   app.use('/', express.static(path.join(__dirname, '../public')))
@@ -27,6 +27,12 @@ export const startServer = () => {
       res.redirect('/error404.html')
     }
   })
-
-  app.listen(process.env.PORT || 5000, onDone)
+  return app
 }
+
+export const startServer = () => {
+  const onDone = () => console.log(`Example app listening at http://localhost:${5000}`)
+  createApp().listen(process.env.PORT || 5000, onDone)
+}
+
+
