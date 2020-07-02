@@ -1,5 +1,6 @@
 {
-  "html.format.enable": false,
+  "editor.formatOnSave": true,
+  "html.format.indentInnerHtml": true,
   
   
 }

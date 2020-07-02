@@ -23,12 +23,9 @@ test('response redirects to error404 for missing digit', async () => {
 //   expect({ name, smsNumber: +17788613154 }).toBe({name: 'John', smsNumber: +17788613154})
 // })
 
-
-
 test('name and smsNumber has been created in SQL', async () => {
-  await request(createApp())
-    .post('/subscriber')
-    .send({ name: 'John', smsNumber: '+1778613154' })
-  const found = await Subscriber.findOne({ raw:true, where: { smsNumber: '+17788613154'} })
-  console.log(found)
+  // delete subscriber past data before running this test
+  await request(createApp()).post('/subscriber').send({ name: 'John', smsNumber: '+1778613154' })
+  const found = await Subscriber.findOne({ raw: true, where: { smsNumber: '+17788613154' } })
+  expect(found?.smsNumber).toBeTruthy()
 })

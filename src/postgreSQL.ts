@@ -1,6 +1,6 @@
 import { Sequelize, Model, DataTypes, BuildOptions } from 'sequelize'
 
-export const sequelize = new Sequelize('postgres://js:@localhost:6432/js') // Example for postgres
+export const sequelize = new Sequelize(process.env.DATABASE_URL || 'postgres://js:@localhost:6432/js') // Example for postgres
 
 export class Subscriber extends Model {
   public readonly id!: string // Note that the `null assertion` `!` is required in strict mode.
