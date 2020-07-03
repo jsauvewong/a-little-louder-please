@@ -1,11 +1,11 @@
 import { Sequelize, Model, DataTypes, BuildOptions } from 'sequelize'
 
-export const sequelize = new Sequelize(process.env.DATABASE_URL || 'postgres://js:@localhost:6432/js') // Example for postgres
+export const sequelize = new Sequelize(process.env.DATABASE_URL as string) // Example for postgres
 
 export class Subscriber extends Model {
   public readonly id!: string // Note that the `null assertion` `!` is required in strict mode.
   public name!: string
-  public smsNumber!: number // for nullable fields
+  public smsNumber!: string // for nullable fields
   public readonly createdAt!: Date
   public readonly updatedAt!: Date
 }
@@ -37,7 +37,7 @@ Subscriber.init(
 export async function setUpDatabase() {
   try {
     await sequelize.authenticate()
-    await sequelize.sync({ force: true })
+    await sequelize.sync()
     console.log('Connection has been established successfully.')
   } catch (error) {
     console.error('Unable to connect to the database:', error)

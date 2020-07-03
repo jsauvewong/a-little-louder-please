@@ -32,7 +32,5 @@ export const createApp = () => {
 
 export const startServer = () => {
   const onDone = () => console.log(`Example app listening at http://localhost:${5000}`)
-  createApp().listen(process.env.PORT || 5000, onDone)
+  createApp().listen(process.env.PORT, onDone)
 }
-
-

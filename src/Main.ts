@@ -7,6 +7,8 @@ import { setUpDatabase } from './postgreSQL'
 // So the app can talk to Heroku on their own assigned port
 startServer()
 
+//dailySendList()
+
 const execute = () => {
   const randomPhrase = pickPhrase()
   sendSms(randomPhrase)
@@ -14,9 +16,10 @@ const execute = () => {
 }
 
 //comment out until ready for it contionously send a message
-const j = schedule.scheduleJob('0 9 * * *', function () {
-  //sendSms(pickPhrase())
-  console.log('done!')
-})
+// const j = schedule.scheduleJob('0 9 * * *', function () {
+//   sendSms(pickPhrase())
+//   console.log('done!')
+// })
+execute()
 
 setUpDatabase()
