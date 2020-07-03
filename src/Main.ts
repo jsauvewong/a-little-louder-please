@@ -1,25 +1,23 @@
 import { sendSms } from './sendSms'
 import { pickPhrase } from './pickPhrase'
-import schedule from 'node-schedule'
 import { startServer } from './express'
 import { setUpDatabase } from './postgreSQL'
 
 // So the app can talk to Heroku on their own assigned port
-startServer()
-
-//dailySendList()
-
-const execute = () => {
-  const randomPhrase = pickPhrase()
-  sendSms(randomPhrase)
-  console.log('sent')
+const letsRunThisBaby = async () => {
+  startServer()
+  const execute = () => {
+    const randomPhrase = pickPhrase()
+    sendSms(randomPhrase)
+    console.log('sent')
+  }
+  //comment out until ready for it contionously send a message
+  // const j = schedule.scheduleJob('0 9 * * *', function () {
+  //   sendSms(pickPhrase())
+  //   console.log('done!')
+  // })
+  await setUpDatabase()
+  execute()
 }
 
-//comment out until ready for it contionously send a message
-// const j = schedule.scheduleJob('0 9 * * *', function () {
-//   sendSms(pickPhrase())
-//   console.log('done!')
-// })
-execute()
-
-setUpDatabase()
+letsRunThisBaby()
