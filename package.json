@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "tsc && node -r dotenv/config dist/Main.js",
     "logs": "heroku logs -a a-little-louder-please --tail",
-    "jest": "jest"
+    "jest": "jest",
+    "restart": "heroku ps:restart --app a-little-louder-please"
   },
   "repository": {
     "type": "git",
