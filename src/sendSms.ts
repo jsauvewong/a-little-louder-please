@@ -7,6 +7,7 @@ export const sendSms = async (message: string) => {
   const client = twilio(accountSid, authToken)
 
   const listOfsmsNumber = await Subscriber.findAll({ attributes: ['smsNumber'], raw: true })
+  console.log(`${listOfsmsNumber} is being sent`)
   for (let i = 0; i < listOfsmsNumber.length; i++) {
     const singleNumber = listOfsmsNumber[i].smsNumber
     await client.messages.create({
