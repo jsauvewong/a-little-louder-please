@@ -8,12 +8,13 @@ export const sendSms = async (message: string) => {
 
   const listOfsmsNumber = await Subscriber.findAll({ attributes: ['smsNumber'], raw: true })
   for (let i = 0; i < listOfsmsNumber.length; i++) {
-    const messageInstancePromise = client.messages.create({
+    const singleNumber = listOfsmsNumber[i].smsNumber
+    await client.messages.create({
       body: message,
       from: process.env.PHONE_NUMBER,
-      to: listOfsmsNumber[i].smsNumber
+      to: singleNumber
     })
 
-    messageInstancePromise.then((message) => console.log(message.sid))
+    console.log(`sent sms to ${singleNumber}`)
   }
 }
