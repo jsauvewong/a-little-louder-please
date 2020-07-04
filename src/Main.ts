@@ -1,4 +1,4 @@
-import { sendSms } from './sendSms'
+import { sendSmsQuote } from './sendSms'
 import { pickPhrase } from './pickPhrase'
 import { startServer } from './express'
 import { setUpDatabase } from './postgreSQL'
@@ -8,7 +8,7 @@ const letsRunThisBaby = async () => {
   startServer()
   const execute = () => {
     const randomPhrase = pickPhrase()
-    sendSms(randomPhrase)
+    sendSmsQuote(randomPhrase)
     console.log('sent')
   }
   //comment out until ready for it contionously send a message

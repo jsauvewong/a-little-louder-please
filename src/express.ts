@@ -3,6 +3,7 @@ import { Subscriber } from './postgreSQL'
 import bodyParser from 'body-parser'
 import path from 'path'
 import { filterNumber } from './parseNumber'
+import { createMessage } from './sendSms'
 
 export const createApp = () => {
   const app = express()
@@ -15,10 +16,15 @@ export const createApp = () => {
 
   app.post('/subscriber', jsonParser, async (req, res) => {
     const { name, smsNumber } = req.body
-    if (filterNumber(smsNumber) !== undefined) {
-      const project = await Subscriber.findOne({ where: { smsNumber: filterNumber(smsNumber) } })
+    const formattedNumber = filterNumber(smsNumber)
+    if (formattedNumber !== undefined) {
+      const project = await Subscriber.findOne({ where: { smsNumber: formattedNumber } })
       if (project === null) {
         const newSubscriber = await Subscriber.create({ name, smsNumber: filterNumber(smsNumber) })
+        createMessage(
+          `Hi there! Thanks for subscribing to A Little Louder App. This is me letting you know I've signed you up. Have a lovely day!`,
+          formattedNumber
+        )
         res.redirect('/redirectsuccess.html')
       } else {
         res.redirect('/redirectsuccess.html')
