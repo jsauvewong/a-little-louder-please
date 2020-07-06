@@ -22,7 +22,7 @@ export const createApp = () => {
       if (project === null) {
         const newSubscriber = await Subscriber.create({ name, smsNumber: filterNumber(smsNumber) })
         createMessage(
-          `Hi there! Thanks for subscribing to A Little Louder App. This is me letting you know I've signed you up. Have a lovely day!`,
+          `Hi there! Thanks for subscribing to A Little Louder App. This is me letting you know I've signed you up. Feel free to send any quotes you want added to the random quote list <3 P.s. Reply back stop anytime you want to unsubscribe.`,
           formattedNumber
         )
         res.redirect('/redirectsuccess.html')

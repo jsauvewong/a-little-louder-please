@@ -2,7 +2,7 @@ import { sendSmsQuote } from './sendSms'
 import { pickPhrase } from './pickPhrase'
 import { startServer } from './express'
 import { setUpDatabase } from './postgreSQL'
-import { schedule } from 'node-schedule'
+import schedule from 'node-schedule'
 
 // So the app can talk to Heroku on their own assigned port
 const letsRunThisBaby = async () => {
